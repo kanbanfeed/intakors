@@ -2,324 +2,228 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Intakors</title>
-
   <style>
     body {
-      font-family: Arial, Helvetica, sans-serif;
-      background-color: #ffffff;
-      color: #111111;
+      font-family: Arial, sans-serif;
+      background: #ffffff;
+      color: #111;
       margin: 0;
       padding: 0;
     }
-
     .container {
-      max-width: 720px;
+      max-width: 760px;
       margin: 0 auto;
-      padding: 80px 20px;
+      padding: 48px 24px;
     }
-
     h1 {
-      font-size: 36px;
+      font-size: 32px;
       margin-bottom: 8px;
-      font-weight: 600;
     }
-
     .subtitle {
       font-size: 16px;
-      color: #333333;
-      margin-bottom: 40px;
+      color: #555;
+      margin-bottom: 32px;
     }
-
     h2 {
+      margin-top: 40px;
       font-size: 22px;
-      margin-top: 60px;
-      margin-bottom: 16px;
-      font-weight: 600;
     }
-
+    p {
+      font-size: 15px;
+      line-height: 1.6;
+      margin: 16px 0;
+    }
     ul {
-      padding-left: 20px;
+      margin-left: 18px;
     }
-
     li {
-      margin-bottom: 10px;
-      font-size: 15px;
-      color: #222222;
+      margin: 8px 0;
     }
-
-    p.step {
-      font-size: 15px;
-      margin: 10px 0;
-    }
-
-    .pricing-subhead {
-      font-size: 18px;
-      font-weight: 600;
-      margin-top: 10px;
-      margin-bottom: 12px;
-      border-bottom: 1px solid #e5e5e5;
-      padding-bottom: 6px;
-    }
-
     .divider {
       height: 1px;
-      background-color: #e5e5e5;
-      margin: 40px 0;
+      background: #e5e5e5;
+      margin: 36px 0;
     }
-
-   /* CTA Button Group */
-.cta-group {
-  margin-top: 40px;
-  display: flex;
-  gap: 16px;
-  justify-content: center;
-  align-items: center;
-  flex-wrap: wrap;
-}
-
-/* Base Button */
-.btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  min-width: 260px;
-  padding: 14px 22px;
-  font-size: 15px;
-  font-weight: 500;
-  text-decoration: none;
-  border-radius: 6px;
-  border: 1px solid #111;
-  transition: 
-    background-color 0.2s ease,
-    color 0.2s ease,
-    transform 0.12s ease,
-    box-shadow 0.12s ease;
-}
-
-/* Secondary Button (Booking) */
-.btn-secondary {
-  background-color: #ffffff;
-  color: #111111;
-}
-
-.btn-secondary:hover {
-  background-color: #f4f4f4;
-}
-
-.btn-secondary:active {
-  background-color: #eaeaea;
-  color: #111111;
-  transform: translateY(1px);
-  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
-}
-
-/* Primary Button (Payment) */
-.btn-primary {
-  background-color: #111111;
-  color: #ffffff;
-}
-
-.btn-primary:hover {
-  background-color: #000000;
-  box-shadow: 0 6px 16px rgba(0,0,0,0.15);
-}
-
-.btn-primary:active {
-  transform: translateY(1px);
-  box-shadow: 0 3px 8px rgba(0,0,0,0.12);
-}
-
-/* footer */
-
-.footer-content {
-  max-width: 900px;
-  margin: 0 auto;
-  text-align: center;
-  line-height: 1.6;
-}
-
-.footer-content p {
-  margin: 6px 0;
-}
-
-
-/* Mobile */
-@media (max-width: 600px) {
-  .cta-group {
-    flex-direction: column;
-  }
-
-  .btn {
-    width: 100%;
-    max-width: 360px;
-  }
-}
-
-/* Mobile button size adjustment */
-@media (max-width: 480px) {
-  .cta-group {
-    gap: 10px;
-  }
-
-  .btn {
-    width: auto;              
-    padding: 12px 18px;       
-    font-size: 14px;
-  }
-
-.btn:active {
-  filter: brightness(0.97);
-}
-
-}
-
-
-
+    .cta-group {
+      text-align: center;
+      margin: 40px 0 16px;
+    }
+    .btn-primary {
+      display: inline-block;
+      background: #000;
+      color: #fff;
+      padding: 14px 28px;
+      text-decoration: none;
+      font-size: 15px;
+    }
+    .fine {
+      font-size: 13px;
+      color: #555;
+      text-align: center;
+      margin-top: 8px;
+    }
+    .footer {
+      border-top: 1px solid #e5e5e5;
+      margin-top: 48px;
+      padding-top: 24px;
+      font-size: 13px;
+      color: #555;
+      text-align: center;
+    }
+    .footer a {
+      color: #555;
+      text-decoration: none;
+    }
   </style>
 </head>
 <body>
 
   <div class="container">
+
     <h1>Intakors</h1>
     <div class="subtitle">
-     Inbound Response & Booking Coverage for Professional Service Firms
+      Inbound Response &amp; Booking Coverage for Professional Service Firms
     </div>
-   
+
     <p>
-        Intakors handles first response and booking for
-        inbound enquiries at professional service firms.
+      Most professional service firms don’t lose enquiries.<br>
+      They lose time.
     </p>
 
     <p>
-        We ensure enquiries are acknowledged promptly and 
-        routed correctly so revenue is not lost due to delay or 
-        inbox neglect.
+      An enquiry arrives.<br>
+      It’s seen.<br>
+      Flagged.<br>
+      Remembered.<br>
+      And followed up too late.
     </p>
 
     <p>
-        Delivered as a fully managed operations service.
+      This isn’t a sales problem.<br>
+      It’s an intake operations gap.
+    </p>
+
+    <p>
+      Intakors exists to close that gap.
     </p>
 
     <div class="divider"></div>
 
-     <h2>Who This is For</h2>
-
-     <p>
-        Intakors is designed for professional service firms that
-        already receive inbound enquires but lose revenue due to 
-        slow or inconsistent response.
+    <h2>What Intakors Does</h2>
+    <p>
+      Intakors provides inbound response and booking coverage.
+    </p>
+    <p>
+      We own first response so enquiries are acknowledged, routed, or booked before intent fades.
+    </p>
+    <p>
+      Delivered as a managed operations service.
     </p>
 
+    <div class="divider"></div>
+
+    <h2>Who This Is For</h2>
+    <p>Intakors is for firms that:</p>
+    <ul>
+      <li>already receive inbound enquiries</li>
+      <li>operate in professional services</li>
+      <li>lose revenue due to slow or inconsistent response</li>
+    </ul>
     <p>
-        If you are looking for more leads, sales support,
-        marketing, or growth services, this is not for you.
+      If you’re looking for more leads, sales support, marketing, or low-cost staffing, this is not for you.
     </p>
 
     <div class="divider"></div>
 
     <h2>What We Do</h2>
     <ul>
-      <li>Respond to inbound enquiries on your behalf</li>
-      <li>Acknowledged and confirm interest and availability</li>
-      <li>Route or book enquiries according to your instructions</li>
+      <li>Respond to inbound enquiries</li>
+      <li>Confirm interest and availability</li>
+      <li>Route or book based on your rules</li>
     </ul>
-
-     <p style="font-size:14px; color:#555;">
-        Intakors is delivered by trained human agents.
-        We do not provide software, platforms, AI systems, or automation tools.
+    <p>
+      Responses are handled via our operations system with human oversight.
+    </p>
+    <p>
+      We do not provide software, AI tools, or automation products.
     </p>
 
     <div class="divider"></div>
 
-     <h2>What We Do Not Do</h2>
-     <ul>
-        <li>We do not generate leads</li>
-        <li>We do not sell or persuade</li>
-        <li>We do not provide advice</li>
-        <li>We do not close deals</li>
-     </ul>
-
-    <p style="font-size:14px; color:#555; margin-top:20px;">
-       This is an operations coverage service only.
+    <h2>What We Do Not Do</h2>
+    <ul>
+      <li>No lead generation</li>
+      <li>No selling or persuasion</li>
+      <li>No advice or consulting</li>
+    </ul>
+    <p>
+      This is intake coverage only.
     </p>
 
     <div class="divider"></div>
 
     <h2>How It Works</h2>
-    <p class="step">1. You start inbound response coverage</p>
-    <p class="step">2. Our team responds to incoming enquires</p>
-    <p class="step">3. Enquiries are routed or booked per your instructions</p>
-
-    <p style="font-size:14px; color:#555; margin-top:20px;">
-       Operational details are handled after coverage begins.
+    <p>1. You start inbound response coverage</p>
+    <p>2. We handle first response</p>
+    <p>3. Enquiries are routed or booked per your instructions</p>
+    <p>
+      Operational setup happens after payment.
     </p>
 
     <div class="divider"></div>
 
     <h2>Pricing</h2>
-    <h3 class="pricing-subhead">Inbound Response Coverage</h3>
+    <p><strong>Inbound Response Coverage</strong></p>
     <ul>
-      <li>USD 500 per month</li>
-      <li>Flat monthly fee</li>
+      <li>USD 500 / month</li>
+      <li>Flat fee</li>
       <li>Cancel anytime</li>
-      <li>No setup fees</li>
+      <li>No setup cost</li>
     </ul>
+    <p>
+      Coverage is designed for typical inbound volumes.<br>
+      Extreme or abusive volumes may require adjustment.
+    </p>
 
-  <p style="font-size:14px; color:#555; margin-top:30px;">
-      Coverage is designed for typical small-firm inbound 
-      Volumes.
- </p>
+    <div class="cta-group">
+      <a
+        href="https://buy.stripe.com/bJe4gy12j6jS41t26t7Vm0L"
+        class="btn-primary"
+        target="_blank"
+      >
+        Start Inbound Response Coverage
+      </a>
+    </div>
 
-  <p style="font-size:14px; color:#555;">
-       Extreme or abusive volumes may require adjustments.
-  </p>
+    <div class="fine">
+      USD 500 / month. Cancel anytime.<br>
+      Managed operational service. Not software.<br>
+      No sales. No advice. No lead generation.
+    </div>
 
-<div class="cta-group">
-  <a
-    href="https://buy.stripe.com/bJe4gy12j6jS41t26t7Vm0L"
-    class="btn btn-primary"
-    target="_blank"
-  >
-    Start Inbound Response Coverage
-  </a>
-</div>
+    <div class="fine">
+      We onboard a limited number of firms to maintain response quality.
+    </div>
 
-<p style="font-size:13px; color:#555; margin-top:12px; text-align:center;">
- $500 per month. Cancel anytime.
-</p>
-
-<p style="font-size:13px; color:#555; margin-top:6px; text-align:center;">
-  This is a managed operational service, not software.
-</p>
-
-<p style="font-size:13px; color:#555; margin-top:6px; text-align:center;">
-   No sales. No advice. No lead generation.
-</p>
-
-
-<p style= text-align:center;>
-  We take on a limited number of firms at a time to maintain response quality.
-</p>
+    <div class="footer">
+      <p>
+        Intakors provides managed intake and booking operations only.<br>
+        No legal, financial, or professional advice.
+      </p>
+      <p>
+        <a href="privacy-policy.html">Privacy Policy</a> |
+        <a href="terms-of-service.html">Terms</a> |
+        <a href="refund-cancellation-policy.html">Refund Policy</a>
+      </p>
+      <p>
+        Support:
+        <a href="mailto:operations@intakors.com">operations@intakors.com</a>
+      </p>
+    </div>
 
   </div>
-
-<div class="footer-content">
-  <p>Intakors provides managed intake and booking operations only.</p>
-  <p>No legal, financial, or professional advice is provided.</p>
-
-  <p style="font-size:13px; color:#555; text-align:center; margin-top:12px;">
-  <a href="/privacy-policy.html">Privacy Policy</a> |
-  <a href="/terms-of-service.html">Terms of Service</a> |
-  <a href="/refund-cancellation-policy.html">Refund & Cancellation Policy</a>
-</p>
-
-  <p style="font-size:13px; color:#555; text-align:center;">
-    Support:
-    <a href="mailto:operations@intakors.com">operations@intakors.com</a>
-  </p>
-</div>
 
 </body>
 </html>
