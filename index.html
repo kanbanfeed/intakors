@@ -1,229 +1,1036 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Intakors</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background: #ffffff;
-      color: #111;
-      margin: 0;
-      padding: 0;
-    }
-    .container {
-      max-width: 760px;
-      margin: 0 auto;
-      padding: 48px 24px;
-    }
-    h1 {
-      font-size: 32px;
-      margin-bottom: 8px;
-    }
-    .subtitle {
-      font-size: 16px;
-      color: #555;
-      margin-bottom: 32px;
-    }
-    h2 {
-      margin-top: 40px;
-      font-size: 22px;
-    }
-    p {
-      font-size: 15px;
-      line-height: 1.6;
-      margin: 16px 0;
-    }
-    ul {
-      margin-left: 18px;
-    }
-    li {
-      margin: 8px 0;
-    }
-    .divider {
-      height: 1px;
-      background: #e5e5e5;
-      margin: 36px 0;
-    }
-    .cta-group {
-      text-align: center;
-      margin: 40px 0 16px;
-    }
-    .btn-primary {
-      display: inline-block;
-      background: #000;
-      color: #fff;
-      padding: 14px 28px;
-      text-decoration: none;
-      font-size: 15px;
-    }
-    .fine {
-      font-size: 13px;
-      color: #555;
-      text-align: center;
-      margin-top: 8px;
-    }
-    .footer {
-      border-top: 1px solid #e5e5e5;
-      margin-top: 48px;
-      padding-top: 24px;
-      font-size: 13px;
-      color: #555;
-      text-align: center;
-    }
-    .footer a {
-      color: #555;
-      text-decoration: none;
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Intakors — Your Leads Are Arriving. And Leaving.</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Epilogue:wght@300;400;500;600;700;900&display=swap');
+
+:root {
+  --black: #080808;
+  --off-white: #f0ece3;
+  --red: #d93025;
+  --red-dark: #b02018;
+  --grey-1: #141414;
+  --grey-2: #1e1e1e;
+  --grey-3: #2c2c2c;
+  --muted: #5a5a5a;
+  --mid: #888;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { font-size: 16px; scroll-behavior: smooth; }
+
+body {
+  background: var(--black);
+  color: var(--off-white);
+  font-family: 'Epilogue', sans-serif;
+  overflow-x: hidden;
+  cursor: default;
+}
+
+/* GRAIN */
+body::after {
+  content: '';
+  position: fixed;
+  inset: -200%;
+  width: 400%;
+  height: 400%;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+  opacity: 0.035;
+  pointer-events: none;
+  z-index: 9999;
+  animation: grain 0.8s steps(2) infinite;
+}
+
+@keyframes grain {
+  0%,100% { transform: translate(0,0); }
+  10% { transform: translate(-2%,-3%); }
+  30% { transform: translate(3%,2%); }
+  50% { transform: translate(-1%,4%); }
+  70% { transform: translate(4%,-1%); }
+  90% { transform: translate(-3%,1%); }
+}
+
+/* NAV */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  padding: 24px 48px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: linear-gradient(to bottom, rgba(8,8,8,0.95), transparent);
+}
+
+.nav-brand {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 22px;
+  letter-spacing: 0.15em;
+  color: var(--off-white);
+}
+
+.nav-cta {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--off-white);
+  text-decoration: none;
+  border: 1px solid var(--grey-3);
+  padding: 10px 20px;
+  transition: all 0.2s;
+}
+
+.nav-cta:hover {
+  border-color: var(--red);
+  color: var(--red);
+}
+
+/* HERO */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 0 48px 80px;
+  position: relative;
+  overflow: hidden;
+}
+
+/* BIG background number */
+.hero-bg-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(200px, 30vw, 420px);
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(255,255,255,0.04);
+  white-space: nowrap;
+  pointer-events: none;
+  user-select: none;
+  letter-spacing: -0.02em;
+}
+
+.hero-eyebrow {
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: var(--red);
+  margin-bottom: 32px;
+  opacity: 0;
+  animation: fadeUp 0.8s ease forwards 0.2s;
+}
+
+.hero h1 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(64px, 10vw, 148px);
+  line-height: 0.92;
+  letter-spacing: 0.01em;
+  margin-bottom: 48px;
+  opacity: 0;
+  animation: fadeUp 0.9s ease forwards 0.4s;
+}
+
+.hero h1 em {
+  font-style: normal;
+  color: var(--red);
+  display: block;
+}
+
+.hero-bottom {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 48px;
+  opacity: 0;
+  animation: fadeUp 0.9s ease forwards 0.6s;
+}
+
+.hero-sub {
+  font-size: 16px;
+  font-weight: 300;
+  line-height: 1.7;
+  color: var(--mid);
+  max-width: 420px;
+}
+
+.hero-sub strong {
+  color: var(--off-white);
+  font-weight: 500;
+}
+
+.hero-stat {
+  text-align: right;
+  flex-shrink: 0;
+}
+
+.hero-stat-number {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 72px;
+  line-height: 1;
+  color: var(--off-white);
+  display: block;
+}
+
+.hero-stat-label {
+  font-size: 11px;
+  color: var(--muted);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  font-weight: 400;
+}
+
+/* DIVIDER */
+.divider {
+  height: 1px;
+  background: var(--grey-3);
+  margin: 0 48px;
+}
+
+/* SECTION */
+section {
+  padding: 100px 48px;
+}
+
+.section-tag {
+  font-size: 10px;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 56px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.section-tag::before {
+  content: '';
+  display: block;
+  width: 32px;
+  height: 1px;
+  background: var(--grey-3);
+}
+
+/* PROBLEM */
+.problem-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2px;
+}
+
+.problem-item {
+  background: var(--grey-1);
+  padding: 40px;
+  position: relative;
+  overflow: hidden;
+  transition: background 0.3s;
+}
+
+.problem-item:hover { background: var(--grey-2); }
+
+.problem-item::before {
+  content: attr(data-num);
+  position: absolute;
+  top: -10px;
+  right: 20px;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 120px;
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(255,255,255,0.05);
+  pointer-events: none;
+}
+
+.problem-item h3 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 28px;
+  letter-spacing: 0.05em;
+  margin-bottom: 16px;
+  color: var(--off-white);
+}
+
+.problem-item p {
+  font-size: 14px;
+  font-weight: 300;
+  line-height: 1.7;
+  color: var(--mid);
+}
+
+/* STATEMENT */
+.statement {
+  background: var(--grey-1);
+  padding: 100px 48px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.statement::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(217,48,37,0.08) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.statement h2 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(42px, 6vw, 80px);
+  line-height: 1.05;
+  max-width: 900px;
+  margin: 0 auto 32px;
+  position: relative;
+}
+
+.statement h2 span { color: var(--red); }
+
+.statement p {
+  font-size: 16px;
+  font-weight: 300;
+  color: var(--mid);
+  max-width: 480px;
+  margin: 0 auto;
+  line-height: 1.7;
+  position: relative;
+}
+
+/* HOW IT WORKS */
+.steps {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2px;
+  margin-top: 0;
+}
+
+.step {
+  padding: 48px 40px;
+  background: var(--grey-1);
+  position: relative;
+}
+
+.step-num {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 13px;
+  letter-spacing: 0.3em;
+  color: var(--red);
+  margin-bottom: 24px;
+  display: block;
+}
+
+.step h3 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 26px;
+  letter-spacing: 0.05em;
+  margin-bottom: 16px;
+  line-height: 1.1;
+}
+
+.step p {
+  font-size: 13px;
+  font-weight: 300;
+  color: var(--mid);
+  line-height: 1.7;
+}
+
+.step-arrow {
+  position: absolute;
+  top: 50%;
+  right: -16px;
+  transform: translateY(-50%);
+  color: var(--grey-3);
+  font-size: 24px;
+  z-index: 2;
+}
+
+/* PRICING */
+.pricing-section { background: var(--black); }
+
+.pricing-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2px;
+}
+
+.pricing-card {
+  background: var(--grey-1);
+  padding: 48px 40px;
+  position: relative;
+  transition: background 0.3s;
+  display: flex;
+  flex-direction: column;
+}
+
+.pricing-card:hover { background: var(--grey-2); }
+
+.pricing-card.featured {
+  background: var(--grey-2);
+  border-top: 2px solid var(--red);
+}
+
+.pricing-card.featured:hover { background: #222; }
+
+.pricing-badge {
+  font-size: 9px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--red);
+  font-weight: 600;
+  margin-bottom: 24px;
+  display: block;
+}
+
+.pricing-name {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 32px;
+  letter-spacing: 0.05em;
+  margin-bottom: 8px;
+}
+
+.pricing-desc {
+  font-size: 13px;
+  font-weight: 300;
+  color: var(--mid);
+  line-height: 1.6;
+  margin-bottom: 40px;
+  flex: 1;
+}
+
+.pricing-price {
+  margin-bottom: 8px;
+}
+
+.pricing-price strong {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 56px;
+  line-height: 1;
+  letter-spacing: 0.02em;
+}
+
+.pricing-price span {
+  font-size: 13px;
+  color: var(--muted);
+  font-weight: 300;
+}
+
+.pricing-note {
+  font-size: 11px;
+  color: var(--muted);
+  margin-bottom: 32px;
+  font-weight: 300;
+}
+
+.pricing-features {
+  list-style: none;
+  margin-bottom: 40px;
+}
+
+.pricing-features li {
+  font-size: 13px;
+  font-weight: 300;
+  color: var(--mid);
+  padding: 10px 0;
+  border-bottom: 1px solid var(--grey-3);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.pricing-features li::before {
+  content: '→';
+  color: var(--red);
+  font-size: 12px;
+  flex-shrink: 0;
+}
+
+.pricing-btn {
+  display: block;
+  text-align: center;
+  padding: 16px 24px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: all 0.2s;
+  font-family: 'Epilogue', sans-serif;
+  cursor: pointer;
+  border: none;
+}
+
+.pricing-btn-outline {
+  border: 1px solid var(--grey-3);
+  color: var(--off-white);
+  background: transparent;
+}
+
+.pricing-btn-outline:hover {
+  border-color: var(--red);
+  color: var(--red);
+}
+
+.pricing-btn-solid {
+  background: var(--red);
+  color: var(--off-white);
+  border: 1px solid var(--red);
+}
+
+.pricing-btn-solid:hover {
+  background: var(--red-dark);
+  border-color: var(--red-dark);
+}
+
+/* FOR SECTION */
+.for-section {
+  background: var(--grey-1);
+}
+
+.for-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2px;
+}
+
+.for-item {
+  padding: 40px 32px;
+  background: var(--black);
+  transition: background 0.2s;
+}
+
+.for-item:hover { background: var(--grey-2); }
+
+.for-icon {
+  font-size: 28px;
+  margin-bottom: 16px;
+  display: block;
+}
+
+.for-item h4 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 20px;
+  letter-spacing: 0.05em;
+  margin-bottom: 10px;
+}
+
+.for-item p {
+  font-size: 12px;
+  font-weight: 300;
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+/* NOT FOR */
+.notfor {
+  padding: 60px 48px;
+  border-top: 1px solid var(--grey-3);
+  display: flex;
+  align-items: center;
+  gap: 32px;
+}
+
+.notfor-label {
+  font-size: 10px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--muted);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.notfor-items {
+  display: flex;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+.notfor-item {
+  font-size: 12px;
+  font-weight: 300;
+  color: var(--muted);
+  text-decoration: line-through;
+  text-decoration-color: var(--red);
+  text-decoration-thickness: 1px;
+}
+
+/* FINAL CTA */
+.final-cta {
+  background: var(--red);
+  padding: 120px 48px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.final-cta::before {
+  content: 'INTAKORS';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(100px, 20vw, 280px);
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(255,255,255,0.08);
+  pointer-events: none;
+  white-space: nowrap;
+}
+
+.final-cta h2 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(48px, 7vw, 96px);
+  line-height: 0.95;
+  margin-bottom: 32px;
+  position: relative;
+  color: #fff;
+}
+
+.final-cta p {
+  font-size: 16px;
+  font-weight: 300;
+  color: rgba(255,255,255,0.7);
+  margin-bottom: 48px;
+  position: relative;
+  max-width: 400px;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 1.6;
+}
+
+.final-btn {
+  display: inline-block;
+  background: var(--black);
+  color: var(--off-white);
+  text-decoration: none;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  padding: 20px 48px;
+  position: relative;
+  transition: all 0.2s;
+  font-family: 'Epilogue', sans-serif;
+}
+
+.final-btn:hover {
+  background: #111;
+  transform: translateY(-2px);
+}
+
+.final-note {
+  font-size: 11px;
+  color: rgba(255,255,255,0.4);
+  margin-top: 20px;
+  position: relative;
+  font-weight: 300;
+  letter-spacing: 0.1em;
+}
+
+/* FOOTER */
+footer {
+  background: var(--black);
+  padding: 40px 48px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid var(--grey-3);
+}
+
+.footer-brand {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 18px;
+  letter-spacing: 0.15em;
+  color: var(--muted);
+}
+
+.footer-links {
+  display: flex;
+  gap: 32px;
+}
+
+.footer-links a {
+  font-size: 11px;
+  color: var(--muted);
+  text-decoration: none;
+  letter-spacing: 0.1em;
+  transition: color 0.2s;
+}
+
+.footer-links a:hover { color: var(--off-white); }
+
+/* ANIMATIONS */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* MOBILE */
+@media (max-width: 768px) {
+  nav { padding: 20px 24px; }
+  .hero { padding: 0 24px 60px; }
+  .hero h1 { font-size: 72px; }
+  .hero-bottom { flex-direction: column; align-items: flex-start; }
+  .hero-stat { text-align: left; }
+  section { padding: 72px 24px; }
+  .divider { margin: 0 24px; }
+  .problem-grid { grid-template-columns: 1fr; }
+  .steps { grid-template-columns: 1fr; }
+  .step-arrow { display: none; }
+  .pricing-grid { grid-template-columns: 1fr; }
+  .for-grid { grid-template-columns: 1fr 1fr; }
+  .statement { padding: 72px 24px; }
+  .notfor { flex-direction: column; align-items: flex-start; padding: 40px 24px; }
+  .final-cta { padding: 80px 24px; }
+  footer { flex-direction: column; gap: 24px; padding: 32px 24px; }
+  .footer-links { flex-wrap: wrap; justify-content: center; }
+}
+</style>
 </head>
 <body>
 
-  <div class="container">
+<!-- NAV -->
+<nav>
+  <div class="nav-brand">INTAKORS</div>
+  <a href="https://buy.stripe.com/bJe4gy12j6jS41t26t7Vm0L" class="nav-cta" target="_blank">Start Now →</a>
+</nav>
 
-    <h1>Intakors</h1>
-    <div class="subtitle">
-      Inbound Response &amp; Booking Coverage for Professional Service Firms
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg-text">72HRS</div>
+  <div class="hero-eyebrow">Inbound Response Coverage</div>
+  <h1>Your leads<br>arrive.<br><em>Then leave.</em></h1>
+  <div class="hero-bottom">
+    <p class="hero-sub">
+      <strong>You don't have a lead problem.</strong> You have a response problem. Every enquiry that waits more than an hour is already talking to someone else. We fix that — automatically, immediately, every time.
+    </p>
+    <div class="hero-stat">
+      <span class="hero-stat-number">78%</span>
+      <span class="hero-stat-label">of leads go with the<br>firm that responds first</span>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- PROBLEM -->
+<section>
+  <div class="section-tag">The Problem</div>
+  <div class="problem-grid">
+    <div class="problem-item reveal" data-num="01">
+      <h3>The Lead Arrives</h3>
+      <p>Someone found your firm. They're ready. They have a need, a timeline, and money. They hit send on an enquiry form or email. Intent is at its peak.</p>
+    </div>
+    <div class="problem-item reveal" data-num="02">
+      <h3>Nobody Responds</h3>
+      <p>It's lunch. It's after 5. Someone is with a client. The email sits. The WhatsApp goes unread. The lead waits. And waiting is all it takes to lose them.</p>
+    </div>
+    <div class="problem-item reveal" data-num="03">
+      <h3>Intent Fades Fast</h3>
+      <p>Within 60 minutes they've Googled two more firms. Within 3 hours they've booked a call with a competitor. Your enquiry is still unread in someone's inbox.</p>
+    </div>
+    <div class="problem-item reveal" data-num="04">
+      <h3>Revenue Disappears</h3>
+      <p>You never even knew they enquired. No alarm goes off. No report flags it. The lead is just gone — quietly, invisibly, permanently. And it happens every single day.</p>
+    </div>
+  </div>
+</section>
+
+<!-- STATEMENT -->
+<div class="statement reveal">
+  <h2>Every hour of delay is a <span>lead handed to your competitor.</span></h2>
+  <p>Most firms lose 20–30% of inbound revenue not from bad marketing — but from the gap between enquiry and first response. That gap is what Intakors closes.</p>
+</div>
+
+<!-- HOW IT WORKS -->
+<section>
+  <div class="section-tag">How It Works</div>
+  <div class="steps">
+    <div class="step reveal">
+      <span class="step-num">Step 01</span>
+      <h3>Lead Hits<br>Your Firm</h3>
+      <p>A prospect submits an enquiry — email, form, or direct message. Intakors intercepts it the moment it arrives.</p>
+      <span class="step-arrow">→</span>
+    </div>
+    <div class="step reveal">
+      <span class="step-num">Step 02</span>
+      <h3>We Respond<br>Within Minutes</h3>
+      <p>Our system sends an immediate, professional, on-brand response. Email first. WhatsApp follow-through. Intent stays alive.</p>
+      <span class="step-arrow">→</span>
+    </div>
+    <div class="step reveal">
+      <span class="step-num">Step 03</span>
+      <h3>Lead Lands<br>On Your Desk</h3>
+      <p>We qualify the lead with a short AI call — five questions. Then hand them to you warm, answered, and ready to close.</p>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- WHO IT'S FOR -->
+<section class="for-section">
+  <div class="section-tag">Who This Is For</div>
+  <div class="for-grid">
+    <div class="for-item reveal">
+      <span class="for-icon">📊</span>
+      <h4>Accountants</h4>
+      <p>Tax season or not — every missed enquiry is a client filing with someone else.</p>
+    </div>
+    <div class="for-item reveal">
+      <span class="for-icon">🏠</span>
+      <h4>Property Firms</h4>
+      <p>Buyers and sellers move fast. A 2-hour response gap costs you the instruction.</p>
+    </div>
+    <div class="for-item reveal">
+      <span class="for-icon">💰</span>
+      <h4>Mortgage Brokers</h4>
+      <p>One lost deal is thousands in commission. Speed is your only differentiator.</p>
+    </div>
+    <div class="for-item reveal">
+      <span class="for-icon">📈</span>
+      <h4>Financial Advisors</h4>
+      <p>Trust starts at first contact. A slow response signals a slow firm.</p>
+    </div>
+    <div class="for-item reveal">
+      <span class="for-icon">🛡️</span>
+      <h4>Insurance Brokers</h4>
+      <p>Comparison sites respond in seconds. You need to too.</p>
+    </div>
+    <div class="for-item reveal">
+      <span class="for-icon">💉</span>
+      <h4>Aesthetic Clinics</h4>
+      <p>Consultation bookings evaporate overnight. Response coverage fills the calendar.</p>
+    </div>
+    <div class="for-item reveal">
+      <span class="for-icon">🏥</span>
+      <h4>Private Medical</h4>
+      <p>Patients in need don't wait. First response wins the appointment.</p>
+    </div>
+    <div class="for-item reveal">
+      <span class="for-icon">🎯</span>
+      <h4>Recruitment Firms</h4>
+      <p>Candidates and clients both ghost slow responders. Speed is everything.</p>
+    </div>
+  </div>
+  <div class="notfor">
+    <span class="notfor-label">Not for</span>
+    <div class="notfor-items">
+      <span class="notfor-item">Startups with no inbound</span>
+      <span class="notfor-item">Businesses seeking more leads</span>
+      <span class="notfor-item">Anyone wanting sales support</span>
+      <span class="notfor-item">Marketing or growth services</span>
+      <span class="notfor-item">Low-cost staffing solutions</span>
+    </div>
+  </div>
+</section>
+
+<!-- WHAT YOU ARE LOSING -->
+<section style="background: var(--grey-1); padding: 100px 48px;">
+  <div class="section-tag">What You Are Losing Right Now</div>
+  <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 2px; margin-bottom: 2px;">
+    <div class="reveal" style="background: var(--black); padding: 48px 40px; border-top: 2px solid var(--red);">
+      <div style="font-family:'Bebas Neue',sans-serif; font-size: 80px; line-height:1; color: var(--red); margin-bottom: 16px;">1hr</div>
+      <div style="font-family:'Bebas Neue',sans-serif; font-size: 22px; letter-spacing:0.05em; margin-bottom: 12px;">The Window</div>
+      <div style="font-size:13px; font-weight:300; color:var(--mid); line-height:1.7;">After 60 minutes without a response, the probability of converting that lead drops by over 60%. They are already looking elsewhere.</div>
+    </div>
+    <div class="reveal" style="background: var(--black); padding: 48px 40px; border-top: 2px solid var(--red);">
+      <div style="font-family:'Bebas Neue',sans-serif; font-size: 80px; line-height:1; color: var(--red); margin-bottom: 16px;">3/wk</div>
+      <div style="font-family:'Bebas Neue',sans-serif; font-size: 22px; letter-spacing:0.05em; margin-bottom: 12px;">Leads Lost</div>
+      <div style="font-size:13px; font-weight:300; color:var(--mid); line-height:1.7;">The average professional service firm loses 2 to 3 qualified enquiries every week — not to bad marketing, but to silence after the enquiry arrives.</div>
+    </div>
+    <div class="reveal" style="background: var(--black); padding: 48px 40px; border-top: 2px solid var(--red);">
+      <div style="font-family:'Bebas Neue',sans-serif; font-size: 80px; line-height:1; color: var(--red); margin-bottom: 16px;">$0</div>
+      <div style="font-family:'Bebas Neue',sans-serif; font-size: 22px; letter-spacing:0.05em; margin-bottom: 12px;">You See It</div>
+      <div style="font-size:13px; font-weight:300; color:var(--mid); line-height:1.7;">There is no alert. No report. No warning. The lead simply never converts and you never know it was there. The leak is invisible.</div>
+    </div>
+  </div>
+  <div style="background: #0f0f0f; border: 1px solid var(--grey-3); padding: 32px 40px; display:flex; align-items:center; gap: 24px;" class="reveal">
+    <div style="width:8px; height:8px; background: var(--red); border-radius:50%; flex-shrink:0;"></div>
+    <div style="font-family:'Bebas Neue',sans-serif; font-size: 24px; letter-spacing:0.05em;">If you recognise this — you already know what it is costing you.</div>
+  </div>
+</section>
+
+<!-- THE PROCESS -->
+<section style="background: var(--black); padding: 100px 48px;">
+  <div class="section-tag">What Happens Instead</div>
+
+  <div style="position:relative; margin-bottom: 80px;">
+    <div style="position:absolute; top:40px; left:8%; right:8%; height:1px; background:var(--grey-3);"></div>
+    <div style="display:grid; grid-template-columns:repeat(5,1fr); gap:2px; position:relative; z-index:2;">
+
+      <div class="reveal" style="padding:0 12px; text-align:center;">
+        <div style="width:80px;height:80px;border-radius:50%;background:var(--grey-1);border:1px solid var(--grey-3);display:flex;align-items:center;justify-content:center;margin:0 auto 24px;font-size:26px;">📩</div>
+        <div style="font-family:'Bebas Neue',sans-serif;font-size:15px;letter-spacing:0.08em;margin-bottom:8px;">Lead Arrives</div>
+        <div style="font-size:11px;font-weight:300;color:var(--muted);line-height:1.6;">Enquiry hits your firm via email or form</div>
+      </div>
+
+      <div class="reveal" style="padding:0 12px; text-align:center;">
+        <div style="width:80px;height:80px;border-radius:50%;background:var(--grey-1);border:2px solid var(--red);display:flex;align-items:center;justify-content:center;margin:0 auto 24px;font-size:26px;">⚡</div>
+        <div style="font-family:'Bebas Neue',sans-serif;font-size:15px;letter-spacing:0.08em;margin-bottom:8px;color:var(--red);">Minutes Later</div>
+        <div style="font-size:11px;font-weight:300;color:var(--muted);line-height:1.6;">Professional email response sent instantly</div>
+      </div>
+
+      <div class="reveal" style="padding:0 12px; text-align:center;">
+        <div style="width:80px;height:80px;border-radius:50%;background:var(--grey-1);border:1px solid var(--grey-3);display:flex;align-items:center;justify-content:center;margin:0 auto 24px;font-size:26px;">💬</div>
+        <div style="font-family:'Bebas Neue',sans-serif;font-size:15px;letter-spacing:0.08em;margin-bottom:8px;">WhatsApp Sent</div>
+        <div style="font-size:11px;font-weight:300;color:var(--muted);line-height:1.6;">Follow-up keeps intent alive on WhatsApp</div>
+      </div>
+
+      <div class="reveal" style="padding:0 12px; text-align:center;">
+        <div style="width:80px;height:80px;border-radius:50%;background:var(--grey-1);border:1px solid var(--grey-3);display:flex;align-items:center;justify-content:center;margin:0 auto 24px;font-size:26px;">📞</div>
+        <div style="font-family:'Bebas Neue',sans-serif;font-size:15px;letter-spacing:0.08em;margin-bottom:8px;">AI Qualifies</div>
+        <div style="font-size:11px;font-weight:300;color:var(--muted);line-height:1.6;">Short voice call. Five questions. Lead assessed.</div>
+      </div>
+
+      <div class="reveal" style="padding:0 12px; text-align:center;">
+        <div style="width:80px;height:80px;border-radius:50%;background:var(--red);border:2px solid var(--red);display:flex;align-items:center;justify-content:center;margin:0 auto 24px;font-size:26px;">🎯</div>
+        <div style="font-family:'Bebas Neue',sans-serif;font-size:15px;letter-spacing:0.08em;margin-bottom:8px;">Yours To Close</div>
+        <div style="font-size:11px;font-weight:300;color:var(--muted);line-height:1.6;">Warm qualified lead handed directly to you</div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Before / After -->
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:2px;" class="reveal">
+    <div style="background:var(--grey-1);padding:48px 40px;">
+      <div style="font-size:10px;letter-spacing:0.3em;text-transform:uppercase;color:var(--muted);margin-bottom:24px;">Before Intakors</div>
+      <div style="display:flex;flex-direction:column;gap:20px;">
+        <div style="display:flex;align-items:flex-start;gap:16px;">
+          <div style="width:22px;height:22px;border-radius:50%;background:#1a0a0a;border:1px solid #3a1a1a;display:flex;align-items:center;justify-content:center;font-size:10px;color:var(--red);flex-shrink:0;margin-top:1px;">✕</div>
+          <span style="font-size:13px;font-weight:300;color:var(--mid);line-height:1.6;">Lead arrives. Nobody sees it for 2 hours.</span>
+        </div>
+        <div style="display:flex;align-items:flex-start;gap:16px;">
+          <div style="width:22px;height:22px;border-radius:50%;background:#1a0a0a;border:1px solid #3a1a1a;display:flex;align-items:center;justify-content:center;font-size:10px;color:var(--red);flex-shrink:0;margin-top:1px;">✕</div>
+          <span style="font-size:13px;font-weight:300;color:var(--mid);line-height:1.6;">Someone replies eventually. Lead has moved on.</span>
+        </div>
+        <div style="display:flex;align-items:flex-start;gap:16px;">
+          <div style="width:22px;height:22px;border-radius:50%;background:#1a0a0a;border:1px solid #3a1a1a;display:flex;align-items:center;justify-content:center;font-size:10px;color:var(--red);flex-shrink:0;margin-top:1px;">✕</div>
+          <span style="font-size:13px;font-weight:300;color:var(--mid);line-height:1.6;">Revenue lost. No record. No alarm. Just gone.</span>
+        </div>
+      </div>
+    </div>
+    <div style="background:var(--grey-2);padding:48px 40px;border-top:2px solid var(--red);">
+      <div style="font-size:10px;letter-spacing:0.3em;text-transform:uppercase;color:var(--red);margin-bottom:24px;">After Intakors</div>
+      <div style="display:flex;flex-direction:column;gap:20px;">
+        <div style="display:flex;align-items:flex-start;gap:16px;">
+          <div style="width:22px;height:22px;border-radius:50%;background:rgba(217,48,37,0.12);border:1px solid var(--red);display:flex;align-items:center;justify-content:center;font-size:10px;color:var(--red);flex-shrink:0;margin-top:1px;">→</div>
+          <span style="font-size:13px;font-weight:300;color:var(--off-white);line-height:1.6;">Lead arrives. Response sent within minutes.</span>
+        </div>
+        <div style="display:flex;align-items:flex-start;gap:16px;">
+          <div style="width:22px;height:22px;border-radius:50%;background:rgba(217,48,37,0.12);border:1px solid var(--red);display:flex;align-items:center;justify-content:center;font-size:10px;color:var(--red);flex-shrink:0;margin-top:1px;">→</div>
+          <span style="font-size:13px;font-weight:300;color:var(--off-white);line-height:1.6;">WhatsApp follow-up keeps them engaged.</span>
+        </div>
+        <div style="display:flex;align-items:flex-start;gap:16px;">
+          <div style="width:22px;height:22px;border-radius:50%;background:rgba(217,48,37,0.12);border:1px solid var(--red);display:flex;align-items:center;justify-content:center;font-size:10px;color:var(--red);flex-shrink:0;margin-top:1px;">→</div>
+          <span style="font-size:13px;font-weight:300;color:var(--off-white);line-height:1.6;">Qualified lead on your desk. You close.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mid page CTA -->
+  <div style="margin-top:2px;background:var(--grey-1);padding:56px 40px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:32px;" class="reveal">
+    <div>
+      <div style="font-family:'Bebas Neue',sans-serif;font-size:34px;letter-spacing:0.05em;margin-bottom:8px;">Ready to stop the leak?</div>
+      <div style="font-size:13px;font-weight:300;color:var(--mid);">Flat fee. Cancel anytime. Coverage starts within 24 hours.</div>
+    </div>
+    <a href="https://buy.stripe.com/bJe4gy12j6jS41t26t7Vm0L" style="display:inline-block;background:var(--red);color:var(--off-white);text-decoration:none;font-family:'Epilogue',sans-serif;font-size:11px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;padding:18px 40px;transition:opacity 0.2s;" target="_blank" onmouseover="this.style.opacity=0.85" onmouseout="this.style.opacity=1">Start Coverage — $500/month →</a>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="pricing-section">
+  <div class="section-tag">Pricing</div>
+  <div class="pricing-grid">
+
+    <div class="pricing-card reveal">
+      <span class="pricing-badge">Entry</span>
+      <div class="pricing-name">First Response</div>
+      <div class="pricing-desc">We respond to every inbound enquiry by email within minutes. Professional, on-brand, and immediate. The lead doesn't go cold.</div>
+      <div class="pricing-price"><strong>$500</strong><span>/month</span></div>
+      <div class="pricing-note">Cancel anytime. Charged for current month. No setup fee.</div>
+      <ul class="pricing-features">
+        <li>Immediate email response</li>
+        <li>On-brand tone matching</li>
+        <li>Availability confirmation</li>
+        <li>Lead routing to your calendar</li>
+      </ul>
+      <a href="https://buy.stripe.com/bJe4gy12j6jS41t26t7Vm0L" class="pricing-btn pricing-btn-outline" target="_blank">Start Coverage →</a>
     </div>
 
-    <p>
-      Most professional service firms don’t lose enquiries.<br>
-      They lose time.
-    </p>
-
-    <p>
-      An enquiry arrives.<br>
-      It’s seen.<br>
-      Flagged.<br>
-      Remembered.<br>
-      And followed up too late.
-    </p>
-
-    <p>
-      This isn’t a sales problem.<br>
-      It’s an intake operations gap.
-    </p>
-
-    <p>
-      Intakors exists to close that gap.
-    </p>
-
-    <div class="divider"></div>
-
-    <h2>What Intakors Does</h2>
-    <p>
-      Intakors provides inbound response and booking coverage.
-    </p>
-    <p>
-      We own first response so enquiries are acknowledged, routed, or booked before intent fades.
-    </p>
-    <p>
-      Delivered as a managed operations service.
-    </p>
-
-    <div class="divider"></div>
-
-    <h2>Who This Is For</h2>
-    <p>Intakors is for firms that:</p>
-    <ul>
-      <li>already receive inbound enquiries</li>
-      <li>operate in professional services</li>
-      <li>lose revenue due to slow or inconsistent response</li>
-    </ul>
-    <p>
-      If you’re looking for more leads, sales support, marketing, or low-cost staffing, this is not for you.
-    </p>
-
-    <div class="divider"></div>
-
-    <h2>What We Do</h2>
-    <ul>
-      <li>Respond to inbound enquiries</li>
-      <li>Confirm interest and availability</li>
-      <li>Route or book based on your rules</li>
-    </ul>
-    <p>
-      Responses are handled via our operations system with human oversight.
-    </p>
-    <p>
-      We do not provide software, AI tools, or automation products.
-    </p>
-
-    <div class="divider"></div>
-
-    <h2>What We Do Not Do</h2>
-    <ul>
-      <li>No lead generation</li>
-      <li>No selling or persuasion</li>
-      <li>No advice or consulting</li>
-    </ul>
-    <p>
-      This is intake coverage only.
-    </p>
-
-    <div class="divider"></div>
-
-    <h2>How It Works</h2>
-    <p>1. You start inbound response coverage</p>
-    <p>2. We handle first response</p>
-    <p>3. Enquiries are routed or booked per your instructions</p>
-    <p>
-      Operational setup happens after payment.
-    </p>
-
-    <div class="divider"></div>
-
-    <h2>Pricing</h2>
-    <p><strong>Inbound Response Coverage</strong></p>
-    <ul>
-      <li>USD 500 / month</li>
-      <li>Flat fee</li>
-      <li>Cancel anytime</li>
-      <li>No setup cost</li>
-    </ul>
-    <p>
-      Coverage is designed for typical inbound volumes.<br>
-      Extreme or abusive volumes may require adjustment.
-    </p>
-
-    <div class="cta-group">
-      <a
-        href="https://buy.stripe.com/bJe4gy12j6jS41t26t7Vm0L"
-        class="btn-primary"
-        target="_blank"
-      >
-        Start Inbound Response Coverage
-      </a>
+    <div class="pricing-card featured reveal">
+      <span class="pricing-badge">Most Popular</span>
+      <div class="pricing-name">Response + Follow Through</div>
+      <div class="pricing-desc">Email response plus WhatsApp follow-up. Two touchpoints within minutes. The lead stays engaged across both channels until they book.</div>
+      <div class="pricing-price"><strong>$1,000</strong><span>/month</span></div>
+      <div class="pricing-note">Cancel anytime. Charged for current month. No setup fee.</div>
+      <ul class="pricing-features">
+        <li>Everything in First Response</li>
+        <li>WhatsApp follow-up message</li>
+        <li>Dual-channel coverage</li>
+        <li>Higher booking conversion rate</li>
+      </ul>
+      <a href="https://buy.stripe.com/bJe4gy12j6jS41t26t7Vm0L" class="pricing-btn pricing-btn-solid" target="_blank">Start Coverage →</a>
     </div>
 
-    <div class="fine">
-      USD 500 / month. Cancel anytime.<br>
-      Managed operational service. Not software.<br>
-      No sales. No advice. No lead generation.
-    </div>
-
-    <div class="fine">
-      We onboard a limited number of firms to maintain response quality.
-    </div>
-
-    <div class="footer">
-      <p>
-        Intakors provides managed intake and booking operations only.<br>
-        No legal, financial, or professional advice.
-      </p>
-      <p>
-        <a href="privacy-policy.html">Privacy Policy</a> |
-        <a href="terms-of-service.html">Terms</a> |
-        <a href="refund-cancellation-policy.html">Refund Policy</a>
-      </p>
-      <p>
-        Support:
-        <a href="mailto:operations@intakors.com">operations@intakors.com</a>
-      </p>
+    <div class="pricing-card reveal">
+      <span class="pricing-badge">Full Coverage</span>
+      <div class="pricing-name">Response + Qualification</div>
+      <div class="pricing-desc">Email, WhatsApp, and an AI voice call that asks five qualifying questions — then hands the lead to you warm and ready to close. You just show up.</div>
+      <div class="pricing-price"><strong>$2,000</strong><span>/month</span></div>
+      <div class="pricing-note">Cancel anytime. Charged for current month. No setup fee.</div>
+      <ul class="pricing-features">
+        <li>Everything in Follow Through</li>
+        <li>AI qualification voice call</li>
+        <li>5-question lead assessment</li>
+        <li>Warm handover to your team</li>
+      </ul>
+      <a href="https://buy.stripe.com/bJe4gy12j6jS41t26t7Vm0L" class="pricing-btn pricing-btn-outline" target="_blank">Start Coverage →</a>
     </div>
 
   </div>
+</section>
 
-</body>
-</html>
+<!-- FINAL CTA -->
+<div class="final-cta reveal">
+  <h2>Stop losing leads<br>you already have.</h2>
+  <p>No calls. No contracts. No setup complexity. Pay once and your next inbound lead is covered within the hour.</p>
+  <a href="https://buy.stripe.com/bJe4gy12j6jS41t26t7Vm0L" class="final-btn" target="_blank">Start Inbound Coverage Now →</a>
+  <div class="final-note">$500/month · Cancel anytime · Charged for current month</div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-brand">INTAKORS</div>
+  <div class="footer-links">
+    <a href="privacy-policy.html">Privacy</a>
+    <a href="terms-of-service.html">Terms</a>
+    <a href="refund-cancellation-policy.html">Refunds</a>
+    <a href="/cdn-cgi/l/email-protection#bcd3ccd9ceddc8d5d3d2cffcd5d2c8ddd7d3cecf92dfd3d1"><span class="__cf_email__" data-cfemail="3857485d4a594c5157564b7851564c5953574a4b165b5755">[email&#160;protected]</span></a>
+  </div>
+</footer>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+// Reveal on scroll
+const reveals = document.querySelectorAll('.reveal');
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach (entry, i) =>  }
